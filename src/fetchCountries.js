@@ -3,5 +3,5 @@ function fetchCountries(name){
 
     fetch(url)
         .then(response => { return response.json(); })
-        .then(country => { console.log(country) });ee
+        .then(country => { console.log(country) });
 }

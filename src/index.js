@@ -1,7 +1,17 @@
 import './css/styles.css';
 
 const inputCountry = document.querySelector('[id="search-box"]');
-e
+inputCountry.addEventListener('click', onInputCountryClick);
+
 const DEBOUNCE_DELAY = 300;
 
-eeeee
+function onInputCountryClick(e) { 
+    
+    const inputCountryValue = e.target.value;
+    const url = `https://restcountries.com/v2/all?fields=${inputCountryValue},capital,population,flag,languages`;
+
+    fetch(url)
+        .then(response => { return response.json(); })
+        .then(country => { console.log(country) });
+
+}
