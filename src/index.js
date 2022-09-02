@@ -1,18 +1,23 @@
 import './css/styles.css';
-
-const inputCountry = document.querySelector('[id="search-box"]');
-inputCountry.addEventListener('click', onInputCountryClick);
+import debounce from "lodash.debounce";
+import { fetchCountries} from "./fetchCountries";
 
 const DEBOUNCE_DELAY = 300;
+
+const inputCountry = document.querySelector('[id="search-box"]');
+
+inputCountry.addEventListener('click', debounce(onInputCountryClick, DEBOUNCE_DELAY));
 
 function onInputCountryClick(e) { 
     
     const inputCountryValue = e.target.value;
-    console.log(inputCountryValue)
-    // const url = `https://restcountries.com/v2/all?fields=name,capital,population,flag,languages`;
-    const url = `https://restcountries.com/v2/name/${inputCountryValue}?fields=name,capital,population,flag,languages`;
-       fetch(url)
-        .then(response => { return response.json(); })
-        .then(country => { console.log(country) });
-
+    
+    if (!inputCountryValue) { 
+        return;
+    }
+    fetchCountries(inputCountryValue);
+       
+    inputCountryValue.trim();
+    
+    
 }
