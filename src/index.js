@@ -1,6 +1,6 @@
 import './css/styles.css';
 import debounce from "lodash.debounce";
-import { fetchCountries} from "./fetchCountries";
+import { fetchCountries, countryList, countryBox} from "./fetchCountries";
 
 const DEBOUNCE_DELAY = 300;
 
@@ -12,12 +12,14 @@ function onInputCountryClick(e) {
     
     const inputCountryValue = e.target.value;
     
-    if (!inputCountryValue) { 
+    const trim = inputCountryValue.trim();
+    
+    if (!inputCountryValue || !trim) { 
+        countryList.innerHTML = '';
+        countryBox.innerHTML = '';
         return;
     }
+
     fetchCountries(inputCountryValue);
        
-    inputCountryValue.trim();
-    
-    
 }

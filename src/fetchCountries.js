@@ -1,5 +1,5 @@
 import Notiflix from 'notiflix';
-export { fetchCountries };
+export { fetchCountries, countryList, countryBox};
     
 const countryList = document.querySelector('.country-list');
 const countryBox = document.querySelector('.country-info');
@@ -27,9 +27,9 @@ const countryBox = document.querySelector('.country-info');
                     function renderCountryList(countries) {
                         const markup = countries
                             .map((country) => {
-                                return `<li>
-                            <p>${country.name}</p>
-                            <p>:${country.flag}</p>
+                                return `<li class = "item">
+                            <img src ='${country.flag}'>
+                            <p class = "text">${country.name}</p>
                             </li>`;
                             })
                             .join("");
@@ -43,9 +43,9 @@ const countryBox = document.querySelector('.country-info');
                     function renderCountryList(countries) {
                         const markup = countries
                             .map((country) => {
-                                return `<li>
-                                <p>${country.name}</p>
-                                <p>:${country.flag}</p>
+                                return `<li class = "item">
+                                <img src ='${country.flag}'>
+                                <p class = "text-box">${country.name}</p>
                                 </li>`;
                             })
                             .join("");
@@ -58,9 +58,9 @@ const countryBox = document.querySelector('.country-info');
                         const markup = countries
                             .map((country) => {
                                 return `<li>
-                                <p>Capital: ${country.capital} </p>
-                                <p>Population: ${country.population}</p>
-                                <p>Languages: ${country.languages[0].name}</p>
+                                <p><span>Capital</span>: ${country.capital}</p>
+                                <p><span>Population</span>: ${country.population}</p>
+                                <p><span>Languages</span>: ${country.languages[0].name}</p>
                                 </li>`;
                             })
                             .join("");
@@ -69,5 +69,5 @@ const countryBox = document.querySelector('.country-info');
 
                     renderCountryBox(countries);
                 };
-            });
+            }).catch(error => { console.log(error) });
         }
