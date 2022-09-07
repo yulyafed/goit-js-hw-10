@@ -6,7 +6,7 @@ const DEBOUNCE_DELAY = 300;
 
 const inputCountry = document.querySelector('[id="search-box"]');
 
-inputCountry.addEventListener('click', debounce(onInputCountryClick, DEBOUNCE_DELAY));
+inputCountry.addEventListener('input', debounce(onInputCountryClick, DEBOUNCE_DELAY));
 
 function onInputCountryClick(e) {
     const inputCountryValue = e.target.value.trim();
